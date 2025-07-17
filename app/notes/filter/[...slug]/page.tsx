@@ -1,13 +1,30 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+// import { Metadata } from "next";
 import { getNotes } from "../../../../lib/api";
 import type { GetNotes } from "../../../../lib/api";
 import NotesClient from "./Notes.client";
+// import { fetchNoteById } from "../../../../lib/api";
+// import { type Note } from "../../../../types/note"
 
-type Props = {
+type NotePageProps = {
   params: Promise<{ slug: string[] }>;
 };
 
-export default async function NotesPage({ params }: Props) {
+// type Props = {
+//   params: Promise<{ id: string }>;
+// };
+
+// export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+//   const { id } = await params;
+//   const note: Note = await fetchNoteById(id);
+
+//   return {
+//     title: note.title,
+//     description: note.content
+//   }
+// }
+
+export default async function NotesPage({ params }: NotePageProps) {
 
   const { slug } = await params; 
 

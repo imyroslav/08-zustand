@@ -1,12 +1,38 @@
-
 import NoteDetailsClient from "./NoteDetails.client";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { fetchNoteById } from "../../../lib/api";
-
+import { Metadata } from "next";
+import { type Note } from "../../../types/note"
 
 type Props = {
   params: Promise<{ id: string }>;
 };
+
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { id } = await params;
+  const note: Note = await fetchNoteById(id);
+
+  return (
+    {
+      title: note.title,
+      description: note.content,
+      openGraph: {
+        title: note.title,
+        description: note.content,
+        url: "https://www.edu.goit.global/uk/account/login",
+        images: [
+          {
+            url: 'https://ac.goit.global/fullstack/react/og-meta.jpg',
+            width: 1200,
+            height: 630,
+            alt: "note",
+          }
+        ]
+      }  
+    }
+    
+  ) 
+}
 
 export default async function NoteDetailsPage({ params }: Props) {
   const { id } = await params;

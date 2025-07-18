@@ -2,13 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import { createNote, NewNoteData } from "../../lib/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNoteDraftStore } from "../../lib/store/noteStore";
 import css from "./NoteForm.module.css";
 
 export const NoteForm = () => {
   const router = useRouter();
-
+  const queryClient = useQueryClient();
   const { draft, setDraft, clearDraft } = useNoteDraftStore();
 
   const handleChange = (
@@ -24,7 +24,8 @@ export const NoteForm = () => {
     mutationFn: createNote,
     onSuccess: () => {
       clearDraft();
-      router.push('/notes/filter/all');
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      router.push("/notes/filter/All");
     },
   });
 

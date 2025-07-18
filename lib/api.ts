@@ -8,6 +8,12 @@ export type GetNotes = {
   tag: string;
 }
 
+export type NewNoteData = {
+  title: string;
+  content: string;
+  tag: string;
+};
+
 
 const request = axios.create({
     baseURL: "https://notehub-public.goit.study/api",

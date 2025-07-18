@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Page Not Found",
     description: "The page you are looking for does not exist.",
-    url: "https://www.edu.goit.global/uk/account/login",
+    url: "https://08-zustand-mu-ten.vercel.app/notes",
     images: [
       {
         url: 'https://ac.goit.global/fullstack/react/og-meta.jpg',
         width: 1200,
         height: 630,
-        alt: "note",
+        alt: "illustration - 404 Not Found",
       }
     ]
   }  

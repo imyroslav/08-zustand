@@ -6,9 +6,10 @@ import { useDebounce } from "use-debounce";
 import { getNotes } from "../../../../lib/api";
 import SearchBox from "../../../../components/SearchBox/SearchBox";
 import NoteList from "../../../../components/NoteList/NoteList";
-import { NoteForm } from "../../../../components/NoteForm/NoteForm";
 import Pagination from "../../../../components/Pagination/Pagination";
-import Modal from "../../../../components/Modal/Modal";
+// import { NoteForm } from "../../../../components/NoteForm/NoteForm";
+import Link from 'next/link';
+// import Modal from "../../../../components/Modal/Modal";
 import type { GetNotes } from "../../../../lib/api";
 import css from "./page.module.css";
 
@@ -16,7 +17,7 @@ export default function Notes({ initialData, tag }: { initialData: GetNotes, tag
   const [page, setPage] = useState(1); 
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
@@ -34,16 +35,16 @@ export default function Notes({ initialData, tag }: { initialData: GetNotes, tag
     <>
       <header className={css.toolbar}>
         <SearchBox value={searchTerm} onSearch={handleSearchChange} />
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
       <Modal onClose={() => setIsModalOpen(false)}>
         <NoteForm onClose={() => setIsModalOpen(false)}/>
       </Modal>
-      )}
+      )} */}
 
       {isLoading && <p>Loading...</p>}
       {isError && <p>Something went wrong</p>}

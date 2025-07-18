@@ -17,11 +17,25 @@ type Props = {
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { slug } = await params;
   const tag = slug[0] === "All" ? "All" : slug[0];
-  // const note: Note = await fetchNoteById(id);
+  
 
   return {
-    title: `Notes: ${tag || 'All'}`,
-    description: `Filtered notes by tag: ${tag || "All"}`
+    title: `Notes: ${tag || "All"}`,
+    description: `Notes filtered by tag: ${tag || "All"}`,
+    openGraph: {
+      title: `Notes: ${tag}`,
+      description: `Notes filtered by tag: ${tag || "All"}`,
+      url: `https://08-zustand-mu-ten.vercel.app/notes/filter/${tag}`,
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "NoteHub",
+        },
+      ]
+    
+    }
   }
 }
 

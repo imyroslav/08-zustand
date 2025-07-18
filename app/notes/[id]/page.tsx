@@ -12,6 +12,8 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   const { id } = await params;
   const note: Note = await fetchNoteById(id);
 
+  console.log(id)
+
   return (
     {
       title: note.title,
@@ -19,7 +21,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
       openGraph: {
         title: note.title,
         description: note.content,
-        url: "https://www.edu.goit.global/uk/account/login",
+        url: "https://08-zustand-mu-ten.vercel.app/notes/${id}",
         images: [
           {
             url: 'https://ac.goit.global/fullstack/react/og-meta.jpg',
